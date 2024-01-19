@@ -37,9 +37,7 @@ import { MatProgressSpinnerModule}from '@angular/material/progress-spinner'
     MatExpansionModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatProgressSpinnerModule,
-   
-   
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
