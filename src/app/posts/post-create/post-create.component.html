@@ -12,7 +12,10 @@
       </mat-form-field>
       <div>
         <button mat-stroked-button type="button" (click)="filepicker.click()">Pick Image</button>
-        <input type="file" #filepicker>
+        <input type="file" (change)= "onImagePicked($event)" #filepicker>
+      </div>
+      <div class="image-preview" *ngIf="imagepreview!=='' && imagepreview">
+        <img [src]="imagepreview" [alt]="form.value.title">
       </div>
       <mat-form-field>
         <textarea
