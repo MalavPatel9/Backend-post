@@ -16,6 +16,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MatProgressSpinnerModule}from '@angular/material/progress-spinner'
+import {MatPaginatorModule}from '@angular/material/paginator'
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MatProgressSpinnerModule}from '@angular/material/progress-spinner'
     MatExpansionModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule
   ],
   providers: [],
