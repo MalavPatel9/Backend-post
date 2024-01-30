@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
 import { ActivatedRoute } from '@angular/router';
-import { mimeType } from './mime-type.validator';
+import { imageValidator } from './mime-type.validator';
 
 @Component({
   selector: 'app-post-create',
@@ -32,7 +32,7 @@ ngOnInit(){
 this.form=new FormGroup({
   title:new FormControl("",[Validators.required,Validators.minLength(3)],),
   content:new FormControl("",[Validators.required]),
-  // image:new FormControl("",[Validators.required, mimeType]), 
+  image:new FormControl("",[Validators.required,imageValidator],), 
 })
   this.postId=this.route.snapshot.paramMap.get('postId')?? 'new'
   if(this.postId!='new'){
@@ -40,10 +40,11 @@ this.form=new FormGroup({
     this.isLoading = true;
     let post=this.postsService.getPost(this.postId).subscribe((postData:any)=>{
       this.isLoading = false;
-      this.post={id:postData._id,title:postData.title, content:postData.content}
+      this.post={id:postData._id,title:postData.title, content:postData.content, imagepath:postData.imagepath}
       this.form.setValue({
         title: this.post.title,
-        content: this.post.content
+        content: this.post.content,
+        image: this.post.imagepath,
       });
     });
     this.post={...post};
@@ -71,9 +72,9 @@ onSavePost() {
     }
     this.isLoading = true;
     if(this.mode==='create'){
-      this.postsService.addPost(this.form.value.title, this.form.value.content);
+      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
     }else{
-      this.postsService.updatePost(this.postId,this.form.value.title, this.form.value.content)
+      this.postsService.updatePost(this.postId,this.form.value.title, this.form.value.content, this.form.value.image)
     }
   
     this.form.reset();
