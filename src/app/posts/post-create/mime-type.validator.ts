@@ -4,7 +4,7 @@ export function imageValidator(control: AbstractControl): ValidationErrors | nul
   const file = control.value as File;
 
   if (file) {
-    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']; // Adjust as needed
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif','image/jpg']; // Adjust as needed
     const validMimeType = allowedMimeTypes.includes(file.type);
 
     if (!validMimeType) {
